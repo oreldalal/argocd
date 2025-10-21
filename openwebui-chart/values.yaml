@@ -1,16 +1,17 @@
 instances:
   - name: production
-  port: 8080
-  replicas: 1
-  labels:
-    app: openwebui
-    env: production
+    port: 8080
+    replicas: 1
+    labels:
+      app: openwebui
+      env: production
+
   - name: dev
-  port: 9090
-  replicas: 1
-  labels:
-    app: openwebui
-    env: dev
+    port: 9090
+    replicas: 1
+    labels:
+      app: openwebui
+      env: dev
 
 image:
   repository: ghcr.io/open-webui/open-webui
