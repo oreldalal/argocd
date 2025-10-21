@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openwebui
+  namespace: argocd   # חשוב! זה ה-namespace שבו מותקן ArgoCD עצמו
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/orel/openwebui-chart.git
+    targetRevision: HEAD   # HEAD = הגרסה האחרונה מה-branch הראשי
+    path: ./openwebui-chart                # הנתיב בתוך הריפו (אם ה-Chart בתיקייה אחרת – עדכני כאן)
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openwebui   # כאן Argo יפרוס את ה-Chart שלך
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true   # יוצר את ה-namespace אם לא קיים
+    automated:
+      prune: true              # מוחק משאבים שלא קיימים יותר ב-Git
+      selfHeal: true           # משחזר שינויים ידניים שנעשו ב-Cluster
+
