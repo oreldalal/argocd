@@ -1,0 +1,34 @@
+{{- range .Values.instances }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openwebui-{{ .name }}
+  labels:
+	app: openwebui
+	env: {{ .labels.env }}
+spec:
+  replicas: {{ .replicas }}
+  selector:
+	matchLabels:
+  	app: openwebui
+  	env: {{ .labels.env }}
+  template:
+	metadata:
+  	labels:
+    	app: openwebui
+    	env: {{ .labels.env }}
+	spec:
+  	containers:
+    	- name: openwebui
+      	image: "{{ $.Values.image.repository }}:{{ $.Values.image.tag }}"
+      	imagePullPolicy: {{ $.Values.image.pullPolicy }}
+      	ports:
+        	- containerPort: {{ .port }}
+      	env:
+        	- name: DISABLE_BACKEND
+          	value: "1"
+        	- name: FORCE_HEADLESS
+          	value: "1"
+{{- end }}
+

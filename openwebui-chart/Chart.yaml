@@ -1,0 +1,7 @@
+apiVersion: v2
+name: openwebui-chart
+description: A Helm chart to deploy OpenWebUI with production and dev instances
+type: application
+version: 0.1.0
+appVersion: "latest"
+

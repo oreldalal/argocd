@@ -1,0 +1,21 @@
+{{- range .Values.instances }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openwebui-{{ .name }}
+  labels:
+	app: openwebui
+	env: {{ .labels.env }}
+spec:
+  type: NodePort
+  selector:
+	app: openwebui
+	env: {{ .labels.env }}
+  ports:
+	- protocol: TCP
+  	port: {{ .port }}
+  	targetPort: {{ .port }}
+  	nodePort: {{ if eq .name "production" }}30080{{ else }}30090{{ end }}
+{{- end }}
+
