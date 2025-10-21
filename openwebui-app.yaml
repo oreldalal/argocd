@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/orel/openwebui-chart.git
+    repoURL: https://github.com/oreldalal/argocd.git
     targetRevision: HEAD   # HEAD = הגרסה האחרונה מה-branch הראשי
     path: ./openwebui-chart                # הנתיב בתוך הריפו (אם ה-Chart בתיקייה אחרת – עדכני כאן)
   destination:
