@@ -24,7 +24,7 @@ spec:
           image: "{{ $.Values.image.repository }}:{{ $.Values.image.tag }}"
           imagePullPolicy: {{ $.Values.image.pullPolicy }}
           ports:
-            - containerPort: {{ .port }}
+            - containerPort: {{ $.Values.image.port }}
           env:
             - name: DISABLE_BACKEND
               value: "1"
